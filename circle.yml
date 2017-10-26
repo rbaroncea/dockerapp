@@ -15,10 +15,10 @@ test:
 
 deployment:
   hub:
-    branch: [circle_ci_publish, master]
+    branch: [branch-v0.7, master]
     commands:
-      - docker login -e radubaroncea@gmail.com -u rbaroncea -p password
-      - docker tag dockerapp_dockerapp rbaroncea/dockerapp:$CIRCLE_SHA1
-      - docker tag dockerapp_dockerapp rbaroncea/dockerapp:latest
-      - docker push rbaroncea/dockerapp:$CIRCLE_SHA1
-      - docker push rbaroncea/dockerapp:latest
+      - docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+      - docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+      - docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest
+      - docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+      - docker push $DOCKER_HUB_USER_ID/dockerapp:latest
